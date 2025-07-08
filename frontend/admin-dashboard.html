@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Z Solutions Admin Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="hero">
+    <h1>Welcome, Admin</h1>
+    <nav>
+  <a href="#" onclick="loadSection('products')">Manage Products</a>
+  <a href="#" onclick="loadSection('addProduct')">Add Product</a>
+  <a href="#" onclick="loadSection('orders')">View Orders</a>
+  <a href="#" onclick="loadSection('clients')">Clients</a>
+  <a href="#" onclick="logout()">Logout</a>
+  <a href="#" onclick="loadSection('dashboard')">📊 Analytics</a>
+
+</nav>
+
+  </header>
+
+  <section id="dashboardContent">Loading...</section>
+
+  <script>
+    const token = localStorage.getItem("adminToken");
+    if (!token) window.location.href = "admin-login.html";
+
+    async function updateStatus(e, orderId) {
+  e.preventDefault();
+  const status = e.target.status.value;
+
+  const res = await fetch(`http://localhost:5000/api/orders/${orderId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify({ status })
+  });
+
+  const data = await res.json();
+
+  if (res.ok) {
+    alert("Status updated!");
+    loadSection('orders');
+  } else {
+    alert("Failed to update.");
+  }
+  return false;
+}
+
+      const container = document.getElementById("dashboardContent");
+
+      if (section === "addProduct") {
+  container.innerHTML = `
+    <h2>Add New Product</h2>
+    <form id="addProductForm">
+      <input type="text" name="name" placeholder="Product Name" required />
+      <textarea name="description" placeholder="Product Description" required></textarea>
+      <input type="number" name="price" placeholder="Price in KES" required />
+      <input type="text" name="category" placeholder="Category (e.g., Cattle, Poultry)" required />
+      <input type="url" name="image" placeholder="Image URL" required />
+      <button type="submit">Add Product</button>
+    </form>
+  `;
+
+  document.getElementById("addProductForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = e.target;
+
+    const payload = {
+      name: form.name.value,
+      description: form.description.value,
+      price: parseFloat(form.price.value),
+      category: form.category.value,
+      image: form.image.value
+    };
+
+    const res = await fetch("http://localhost:5000/api/products", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      alert("Product added successfully!");
+      loadSection("products");
+    } else {
+      alert(data.message || "Failed to add product.");
+    }
+  });
+}
+
+      
+
+      if (section === "orders") {
+  const res = await fetch("http://localhost:5000/api/orders", {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  const orders = await res.json();
+
+  container.innerHTML = "<h2>Orders</h2>" + orders.map(order => `
+    <div>
+      <strong>${order.clientName}</strong> (${order.status})<br>
+      Total: KES ${order.totalAmount}<br>
+      <form onsubmit="return updateStatus(event, '${order._id}')">
+        <select name="status">
+          <option value="Pending" ${order.status === "Pending" ? "selected" : ""}>Pending</option>
+          <option value="Processing" ${order.status === "Processing" ? "selected" : ""}>Processing</option>
+          <option value="Shipped" ${order.status === "Shipped" ? "selected" : ""}>Shipped</option>
+          <option value="Delivered" ${order.status === "Delivered" ? "selected" : ""}>Delivered</option>
+          <option value="Cancelled" ${order.status === "Cancelled" ? "selected" : ""}>Cancelled</option>
+        </select>
+        <button type="submit">Update</button>
+      </form>
+    </div><hr>
+  `).join("");
+}
+
+
+      if (section === "clients") {
+        const res = await fetch("http://localhost:5000/api/clients", {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        const clients = await res.json();
+        container.innerHTML = "<h2>Clients</h2>" + clients.map(c =>
+          `<div>${c.fullName} - ${c.email}</div>`
+        ).join("");
+      }
+    
+
+    function logout() {
+      localStorage.removeItem("adminToken");
+      window.location.href = "admin-login.html";
+    }
+
+    loadSection("products");
+    if (section === "dashboard") {
+  const res = await fetch("http://localhost:5000/api/admin/stats", {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  const stats = await res.json();
+
+  container.innerHTML = `
+    <h2>📊 Z Solutions Analytics</h2>
+    <div><strong>Total Sales:</strong> KES ${stats.totalSales}</div>
+    <div><strong>Total Orders:</strong> ${stats.ordersCount}</div>
+    <div><strong>Clients Served:</strong> ${stats.clientsCount}</div>
+    <div><strong>Products in Inventory:</strong> ${stats.productCount}</div>
+    <h3>🔥 Top Products:</h3>
+    <ul>
+      ${stats.topProducts.map(p => `<li>${p._id} - ${p.totalQty} Orders</li>`).join("")}
+    </ul>
+  `;
+}
+
+  </script>
+</body>
+</html>

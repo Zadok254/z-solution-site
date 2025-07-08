@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You | Z Solutions</title>
+  <link rel="stylesheet" href="css/thankyou.css" />
+</head>
+<body>
+
+  <div class="thank-you-container">
+    <div class="card">
+      <h1>🎉 Payment Received!</h1>
+      <p>Thank you for shopping with <strong>Z Solutions</strong>.</p>
+
+      <div class="transaction-summary">
+        <p><strong>🧾 Reference:</strong> <span id="mpesaCode">QYH65AJ2VL</span></p>
+        <p><strong>📱 Phone:</strong> <span id="phoneNumber">254712345678</span></p>
+        <p><strong>💰 Amount:</strong> KES <span id="amount">1,200</span></p>
+      </div>
+
+      <a href="track-order.html" class="btn">🚚 Track My Order</a>
+      <a href="index.html" class="btn btn-secondary">🏡 Back to Home</a>
+      <a class="btn btn-whatsapp" href="https://wa.me/254712345678?text=Hello+Z+Solutions%2C+I+just+completed+payment+and+need+assistance.">💬 Chat on WhatsApp</a>
+    </div>
+  </div>
+
+  <script>
+  document.getElementById("mpesaCode").innerText = sessionStorage.getItem("ref") || "QYH65AJ2VL";
+  document.getElementById("phoneNumber").innerText = sessionStorage.getItem("phone") || "254712345678";
+  document.getElementById("amount").innerText = sessionStorage.getItem("amount") || "1,200";
+</script>
+
+  </script>
+
+</body>
+</html>

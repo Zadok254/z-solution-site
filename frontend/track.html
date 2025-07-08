@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Track My Order | Z Solutions</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="cart-header">
+    <h1>📦 Track My Order</h1>
+    <p>Enter your phone number or order ID</p>
+  </header>
+
+  <section class="checkout-form">
+    <form onsubmit="trackOrder(event)">
+      <input type="text" id="trackInput" placeholder="Phone number or Order ID" required />
+      <button type="submit">Track Order</button>
+    </form>
+
+    <div id="orderResult" style="margin-top: 2rem;"></div>
+  </section>
+
+  <script>
+    async function trackOrder(e) {
+      e.preventDefault();
+      const input = document.getElementById("trackInput").value.trim();
+
+      const res = await fetch(`http://localhost:5000/api/orders/track/${input}`);
+      const orderResult = document.getElementById("orderResult");
+
+      if (!res.ok) {
+        orderResult.innerHTML = `<p style="color:red;">Order not found.</p>`;
+        return;
+      }
+
+      const order = await res.json();
+
+      orderResult.innerHTML = `
+        <h3>Status: ${order.status}</h3>
+        <p><strong>Customer:</strong> ${order.customerName}</p>
+        <p><strong>Phone:</strong> ${order.phone}</p>
+        <p><strong>Location:</strong> ${order.location}</p>
+        <p><strong>Payment:</strong> ${order.paymentMethod}</p>
+        <p><strong>Products:</strong> ${order.products.join(", ")}</p>
+        <p><strong>Total:</strong> KES ${order.total}</p>
+        <p><strong>Placed On:</strong> ${new Date(order.createdAt).toLocaleString()}</p>
+      `;
+    }
+  </script>
+
+</body>
+</html>

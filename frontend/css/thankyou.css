@@ -1,0 +1,73 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #eafaf1, #e0f7dc);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.thank-you-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.card {
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  max-width: 500px;
+}
+
+.card h1 {
+  color: #2b7a0b;
+  font-size: 2rem;
+}
+
+.card p {
+  margin-top: 0.8rem;
+  font-size: 1rem;
+}
+
+.transaction-summary {
+  margin: 1.5rem 0;
+  text-align: left;
+  background: #f0fff0;
+  padding: 1rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.btn {
+  display: inline-block;
+  background: #2b7a0b;
+  color: #fff;
+  padding: 0.7rem 1.4rem;
+  margin: 0.5rem 0.3rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #256208;
+}
+
+.btn-secondary {
+  background: #777;
+}
+
+.btn-secondary:hover {
+  background: #555;
+}
+
+.btn-whatsapp {
+  background: #25D366;
+}
+
+.btn-whatsapp:hover {
+  background: #1ebe5b;
+}

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Z Solutions - Your Organic Future</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Africa’s #1 Organic Agro-Tech Solution - Z Solutions">
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+</head>
+<body>
+
+<!-- 🔥 HERO SECTION -->
+<header class="hero">
+  <div class="hero-overlay"></div>
+  <nav class="navbar">
+    <img src="images/logo.png" alt="Z Solutions Logo" class="logo">
+    <ul>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#farms">Farms</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#track">Track Order</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#" onclick="startWhatsAppChat()">💬 WhatsApp</a></li>
+    </ul>
+  </nav>
+  <div class="hero-content">
+    <h1>🌿 Welcome to <span>Z Solutions</span></h1>
+    <p>Your Ultimate Organic Agricultural Solution</p>
+    <p><em>Feeding Every Mouth Organically.</em></p>
+    <a href="#products" class="btn-gold">🛒 Shop Now</a>
+  </div>
+</header>
+<!-- 💡 Z SOLUTIONS PROMISE -->
+<section class="promise">
+  <div class="promise-container">
+    <div class="promise-card">
+      <img src="images/organic.png" alt="100% Organic">
+      <h3>100% Organic</h3>
+      <p>We deliver nature’s best with no chemicals or compromise.</p>
+    </div>
+    <div class="promise-card">
+      <img src="images/global.png" alt="Global Reach">
+      <h3>77 Global Branches</h3>
+      <p>From Kenya to the world — Z Solutions is everywhere.</p>
+    </div>
+    <div class="promise-card">
+      <img src="images/clients.png" alt="Happy Clients">
+      <h3>5000+ Happy Clients</h3>
+      <p>We serve homes, hotels, and hospitals globally.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 🛒 FEATURED PRODUCTS -->
+<section class="products" id="products">
+  <h2 class="section-title">🛒 Featured Organic Products</h2>
+  <div class="product-grid">
+    <div class="product-card">
+      <img src="images/kale.jpg" alt="Kale">
+      <h4>🥬 Kale Bundle</h4>
+      <p>KES 120</p>
+    </div>
+    <div class="product-card">
+      <img src="images/chicken.jpg" alt="Chicken">
+      <h4>🐓 Free-range Chicken</h4>
+      <p>KES 950</p>
+    </div>
+    <div class="product-card">
+      <img src="images/tomatoes.jpg" alt="Tomatoes">
+      <h4>🍅 Tomato Crate</h4>
+      <p>KES 700</p>
+    </div>
+    <div class="product-card">
+      <img src="images/milk.jpg" alt="Milk">
+      <h4>🐄 Raw Milk (5L)</h4>
+      <p>KES 400</p>
+    </div>
+  </div>
+  <a href="products.html" class="btn-green">See All Products</a>
+</section>
+
+<!-- 🏞️ FARM SHOWCASE -->
+<section class="farms" id="farms">
+  <h2 class="section-title">🏞️ Our Organic Farms</h2>
+  <div class="farm-gallery">
+    <img src="images/farm1.jpg" alt="Nakuru Farm">
+    <img src="images/farm2.jpg" alt="Kisumu Poultry">
+    <img src="images/farm3.jpg" alt="Eldoret Greenhouse">
+    <img src="images/farm4.jpg" alt="Mombasa Dairy">
+  </div>
+</section>
+
+<!-- 🗣️ CLIENT TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <h2 class="section-title">🗣️ What Our Clients Say</h2>
+  <div class="testimonial-row">
+    <div class="testimonial">
+      <p>“Z Solutions transformed our community farm.”</p>
+      <h5>– Mama Agnes, Kisumu</h5>
+    </div>
+    <div class="testimonial">
+      <p>“The consultation helped us install smart irrigation.”</p>
+      <h5>– David O., Thika</h5>
+    </div>
+    <div class="testimonial">
+      <p>“I ordered milk online and it arrived fresh within hours.”</p>
+      <h5>– Lillian M., Nairobi</h5>
+    </div>
+  </div>
+</section>
+
+<!-- 📊 ANIMATED COMPANY STATS -->
+<section class="stats">
+  <div class="stat">
+    <h3><span class="count" data-target="77">0</span>+</h3>
+    <p>Global Branches</p>
+  </div>
+  <div class="stat">
+    <h3><span class="count" data-target="10">0</span>+</h3>
+    <p>Years Experience</p>
+  </div>
+  <div class="stat">
+    <h3><span class="count" data-target="5000">0</span>+</h3>
+    <p>Happy Clients</p>
+  </div>
+</section>
+<!-- 💌 NEWSLETTER SIGNUP -->
+<section class="newsletter" id="newsletter">
+  <h2>📥 Stay Connected with Z Solutions</h2>
+  <p>Get farming tips, organic promos, and updates weekly.</p>
+  <form class="newsletter-form">
+    <input type="email" placeholder="Enter your email" required />
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<!-- 🌍 GOOGLE MAPS SECTION -->
+<section class="map-section" id="map">
+  <h2>🌍 Our Branch Locations</h2>
+  <iframe 
+    src="https://www.google.com/maps/d/embed?mid=1lYHJL3tVqQz3cbv5ZaqpYFZebBw&hl=en"
+    width="100%" height="480" style="border:0;"
+    allowfullscreen="" loading="lazy"></iframe>
+</section>
+
+<!-- 📍 GEO-FIND NEAREST BRANCH -->
+<section class="geo-branch" id="find-branch">
+  <h2>📍 Find Your Nearest Z Branch</h2>
+  <button onclick="findBranch()">Find My Branch</button>
+  <div id="branchResult"></div>
+</section>
+
+<script>
+const branches = [
+  { name: "Nairobi HQ", lat: -1.2921, lon: 36.8219 },
+  { name: "Kisumu", lat: -0.0917, lon: 34.7679 },
+  { name: "Mombasa", lat: -4.0435, lon: 39.6682 },
+  { name: "Eldoret", lat: 0.5204, lon: 35.2698 },
+  { name: "Kakamega", lat: 0.2827, lon: 34.7519 },
+  { name: "Kampala", lat: 0.3476, lon: 32.5825 },
+  { name: "Accra", lat: 5.6037, lon: -0.1870 }
+];
+function findBranch() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(position => {
+      const userLat = position.coords.latitude;
+      const userLon = position.coords.longitude;
+      let nearest = null;
+      let minDistance = Infinity;
+      branches.forEach(branch => {
+        const dist = Math.sqrt(Math.pow(branch.lat - userLat, 2) + Math.pow(branch.lon - userLon, 2));
+        if (dist < minDistance) {
+          minDistance = dist;
+          nearest = branch;
+        }
+      });
+      document.getElementById("branchResult").innerText = `📍 Your Nearest Branch: ${nearest.name}`;
+    });
+  } else {
+    document.getElementById("branchResult").innerText = "Geolocation not supported.";
+  }
+}
+</script>
+
+<!-- 📞 WHATSAPP CHAT (Floating Button + Popup Prompt) -->
+<a href="#" class="whatsapp-float" onclick="startWhatsAppChat()">💬 Chat with Us</a>
+
+<script>
+  function startWhatsAppChat() {
+    const input = prompt("Type your message to Z Solutions:");
+    if (input) {
+      const msg = encodeURIComponent(input);
+      const phone = "254712345678";
+      window.open(`https://wa.me/${phone}?text=${msg}`, "_blank");
+    }
+  }
+</script>
+
+<!-- 📈 COUNTER JS (Simple Count Up) -->
+<script>
+  const counters = document.querySelectorAll('.count');
+  counters.forEach(counter => {
+    const update = () => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+      const increment = target / 200;
+      if (count < target) {
+        counter.innerText = Math.ceil(count + increment);
+        setTimeout(update, 20);
+      } else {
+        counter.innerText = target;
+      }
+    };
+    update();
+  });
+</script>
+
+<!-- 🌟 Floating Chat Button Styling -->
+<style>
+  .whatsapp-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #25D366;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: 0.3s;
+    z-index: 999;
+  }
+  .whatsapp-float:hover {
+    background-color: #128C7E;
+  }
+</style>
+<!-- ℹ️ ABOUT US SECTION -->
+<section class="about" id="about">
+  <h2>ℹ️ About Z Solutions</h2>
+  <p>Z Solutions is Africa’s #1 organic agriculture powerhouse. Headquartered in Kenya with 77 global branches, we empower farmers, supply organic produce, and consult for sustainable farming.</p>
+</section>
+
+<!-- 🎯 MISSION & VISION SECTION -->
+<section class="mission-vision" id="mission">
+  <div class="mission">
+    <h3>🎯 Our Mission</h3>
+    <p>To feed every mouth organically by empowering communities through clean agriculture and sustainable systems.</p>
+  </div>
+  <div class="vision">
+    <h3>🌍 Our Vision</h3>
+    <p>To become the world’s leading organic agricultural brand, trusted in every home, hotel, and hospital globally.</p>
+  </div>
+</section>
+
+<!-- 🖼️ GALLERY SECTION -->
+<section class="gallery" id="gallery">
+  <h2>📸 Gallery - Our Global Organic Impact</h2>
+  <div class="gallery-grid">
+    <img src="images/gallery1.jpg" alt="Farmers at Nakuru Farm">
+    <img src="images/gallery2.jpg" alt="Organic Tomatoes Harvest">
+    <img src="images/gallery3.jpg" alt="Free-Range Chicken Unit">
+    <img src="images/gallery4.jpg" alt="Z Branch Kisumu">
+    <img src="images/gallery5.jpg" alt="Milk Delivery Team">
+    <img src="images/gallery6.jpg" alt="Agro-Training Program">
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2>📞 Get In Touch with Z Solutions</h2>
+  <div class="contact-wrapper">
+    <form class="contact-form">
+      <input type="text" placeholder="👤 Your Name" required />
+      <input type="email" placeholder="📧 Your Email" required />
+      <textarea rows="5" placeholder="📝 Your Message" required></textarea>
+      <button type="submit">📨 Send Message</button>
+    </form>
+    <div class="contact-details">
+      <h4>📍 Z HQ - Nairobi, Kenya</h4>
+      <p>📧 Email: support@zsolutions.org</p>
+      <p>📞 Phone: +254 712 345 678</p>
+      <p>🌐 77 Branches Worldwide</p>
+    </div>
+  </div>
+</section>
+
+<!-- 📝 NEW CUSTOMER REGISTRATION -->
+<section class="register-now" id="register">
+  <h2>📝 New Here? Register & Start Shopping</h2>
+  <p>Create a customer profile in seconds and explore our organic marketplace.</p>
+  <a href="register.html" class="btn-green">🚀 Register & Shop Now</a>
+</section>
+<!-- 🧾 FOOTER -->
+<footer id="contact">
+  <div class="footer-container">
+    <div>
+      <h3>Z Solutions</h3>
+      <p>Your Organic Agricultural Partner.</p>
+      <p><strong>HQ:</strong> Nairobi, Kenya</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#farms">Farms</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#newsletter">Newsletter</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Follow Us</h4>
+      <p><a href="#">🌐 Website</a></p>
+      <p><a href="#">📘 Facebook</a></p>
+      <p><a href="#">📸 Instagram</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Z Solutions. Built with 💚 in Africa.</p>
+  </div>
+  <div class="footer-social">
+  <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+  <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+  <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+  <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+</div>
+<a href="#top" class="back-to-top">⬆ Back to Top</a>
+
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

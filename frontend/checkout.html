@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout | Z Solutions</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="cart-header">
+    <h1>🚚 Checkout</h1>
+    <p>Fill in your details to complete the order</p>
+  </header>
+
+  <section class="checkout-form">
+    <form id="checkoutForm">
+      <input type="text" id="customerName" placeholder="Full Name" required />
+      <input type="tel" id="phone" placeholder="Phone Number" required />
+      <input type="text" id="location" placeholder="Delivery Location" required />
+      
+      <label>Payment Method:</label>
+      <select id="paymentMethod" required>
+        <option value="">Select</option>
+        <option value="Mpesa">Mpesa</option>
+        <option value="Cash on Delivery">Cash on Delivery</option>
+      </select>
+
+      <button type="submit">Place Order</button>
+    </form>
+  </section>
+  <form onsubmit="payWithMpesa(event)">
+  <input type="tel" id="mpesaPhone" placeholder="Enter Mpesa Phone" required />
+  <input type="number" id="mpesaAmount" placeholder="Amount" required />
+  <button type="submit">Pay with Mpesa</button>
+</form>
+
+<script>
+  async function payWithMpesa(e) {
+    e.preventDefault();
+    const phone = document.getElementById('mpesaPhone').value;
+    const amount = document.getElementById('mpesaAmount').value;
+
+    const res = await fetch("http://localhost:5000/api/mpesa/stk", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ phone, amount })
+    });
+
+    const data = await res.json();
+    alert(data.message || "STK Push Sent!");
+  }
+</script>
+<form onsubmit="payWithMpesa(event)">
+  <input type="tel" id="mpesaPhone" placeholder="Enter Mpesa Phone" required />
+  <input type="number" id="mpesaAmount" placeholder="Amount" required />
+  <button type="submit">Pay with Mpesa</button>
+</form>
+
+<div id="mpesaStatus" style="margin-top: 20px;"></div>
+
+<script>
+  async function payWithMpesa(e) {
+    e.preventDefault();
+
+    const phone = document.getElementById("mpesaPhone").value;
+    const amount = document.getElementById("mpesaAmount").value;
+    const statusDiv = document.getElementById("mpesaStatus");
+
+    statusDiv.innerHTML = "📲 Waiting for Mpesa STK Push...";
+
+    const res = await fetch("http://localhost:5000/api/mpesa/stk", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ phone, amount }),
+    });
+
+    const data = await res.json();
+    const checkoutID = data.checkoutRequestID;
+
+    // Poll backend every 5 seconds to check if payment confirmed
+    const interval = setInterval(async () => {
+      const check = await fetch(`http://localhost:5000/api/payments/status/${checkoutID}`);
+      const statusData = await check.json();
+
+      if (statusData.status === "Success") {
+        clearInterval(interval);
+        statusDiv.innerHTML = "✅ Payment Successful! Thank you for shopping with Z Solutions!";
+      }
+
+      if (statusData.status === "Failed") {
+        clearInterval(interval);
+        statusDiv.innerHTML = "❌ Payment Failed. Please try again.";
+      }
+    }, 5000);
+  }
+</script>
+
+
+  <script src="js/checkout.js"></script>
+
+</body>
+</html>

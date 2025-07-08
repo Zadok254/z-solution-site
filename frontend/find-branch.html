@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Find Nearest Branch | Z Solutions</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="find-branch-header">
+    <h1>🌍 Find a Z Branch Near You</h1>
+    <p>Your global organic partner – 77 branches worldwide</p>
+  </header>
+
+  <section class="find-branch-section" id="nearestBranch">
+    <h2>📌 Use your location to find the nearest Z Solutions branch</h2>
+    <button onclick="findBranch()">Find My Branch</button>
+
+    <div id="loadingSpinner" class="spinner" style="display: none;"></div>
+    <div id="branchResult">We'll display your nearest branch here...</div>
+  </section>
+
+  <script>
+    const branches = [
+      { name: "Nairobi HQ", lat: -1.2921, lon: 36.8219 },
+      { name: "Kisumu", lat: -0.0917, lon: 34.7679 },
+      { name: "Mombasa", lat: -4.0435, lon: 39.6682 },
+      { name: "Eldoret", lat: 0.5204, lon: 35.2698 },
+      { name: "Kakamega", lat: 0.2827, lon: 34.7519 },
+      { name: "Kampala", lat: 0.3476, lon: 32.5825 },
+      { name: "Accra", lat: 5.6037, lon: -0.1870 }
+    ];
+
+    function findBranch() {
+      const spinner = document.getElementById("loadingSpinner");
+      const result = document.getElementById("branchResult");
+      spinner.style.display = "block";
+      result.innerHTML = "";
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          const userLat = position.coords.latitude;
+          const userLon = position.coords.longitude;
+
+          let nearest = null;
+          let minDistance = Infinity;
+
+          branches.forEach(branch => {
+            const dist = Math.sqrt(
+              Math.pow(branch.lat - userLat, 2) +
+              Math.pow(branch.lon - userLon, 2)
+            );
+            if (dist < minDistance) {
+              minDistance = dist;
+              nearest = branch;
+            }
+          });
+
+          spinner.style.display = "none";
+          result.innerHTML = `
+            📍 <strong>Your Nearest Branch:</strong> ${nearest.name}<br>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=${nearest.lat},${nearest.lon}" 
+               target="_blank" style="color:blue;text-decoration:underline;">
+               Open in Google Maps
+            </a>
+          `;
+        }, () => {
+          spinner.style.display = "none";
+          result.innerText = "Failed to get your location.";
+        });
+      } else {
+        spinner.style.display = "none";
+        result.innerText = "Geolocation not supported by your browser.";
+      }
+    }
+  </script>
+
+</body>
+</html>
