@@ -14,15 +14,15 @@
 }
 
 * {
-  margin: 0;
-  padding: 0;
+  margin: 1;
+  padding: 10;
   box-sizing: border-box;
 }
 
 body {
   font-family: 'Segoe UI', sans-serif;
   background-color: var(--light);
-  color: #222;
+  color: #01461a;
   line-height: 1.6;
 }
 
@@ -45,8 +45,9 @@ body {
 
 
 .logo {
-  width: 40px;
+  width: 30px;
   margin: 1rem auto;
+  text-align: left;
 }
 
 .hero-content {
